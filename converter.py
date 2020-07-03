@@ -1,5 +1,7 @@
 from tabulate import tabulate
 
+from SequenceGenerator import SequenceGenerator
+
 
 def create_row(edges):
     row = {}
@@ -66,7 +68,36 @@ def print_converted(converted, sigma, start, finals):
     print(tabulate(body, header, 'pretty'))
 
 
+def print_simplified(converted, sigma, start, finals):
+    ch = SequenceGenerator()
+    simples = {}
+    header = [''] + sigma
+    body = []
+
+    for nodes in converted:
+        simples[nodes] = ch.next_string()
+
+    for nodes, right in converted.items():
+        row = []
+        left = '->' if start in nodes else ''
+
+        if contains_at_lest_one(finals, nodes):
+            left += '*'
+
+        left += simples[nodes]
+        row.append(left)
+
+        for hops in right.values():
+            frozen = tuple(hops)
+            row.append('-' if len(hops) == 0 else simples[frozen])
+
+        body.append(row)
+
+    print(tabulate(body, header, 'pretty'))
+
+
 def convert(sigma, start, finals, graph):
     converted = {}
     rec_convert(graph, converted, sigma, tuple([start]))
     print_converted(converted, sigma, start, finals)
+    print_simplified(converted, sigma, start, finals)
