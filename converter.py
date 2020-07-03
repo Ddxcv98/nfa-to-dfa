@@ -52,9 +52,11 @@ def print_converted(converted, sigma, start, finals):
 
     for nodes, right in converted.items():
         row = []
-        left = '->' if start in nodes else ''
+        left = ''
 
-        if contains_at_lest_one(finals, nodes):
+        if nodes == start:
+            left = '->'
+        elif contains_at_lest_one(finals, nodes):
             left += '*'
 
         left += str(nodes)
@@ -79,9 +81,11 @@ def print_simplified(converted, sigma, start, finals):
 
     for nodes, right in converted.items():
         row = []
-        left = '->' if start in nodes else ''
+        left = ''
 
-        if contains_at_lest_one(finals, nodes):
+        if nodes == start:
+            left = '->'
+        elif contains_at_lest_one(finals, nodes):
             left += '*'
 
         left += simples[nodes]
@@ -98,6 +102,7 @@ def print_simplified(converted, sigma, start, finals):
 
 def convert(sigma, start, finals, graph):
     converted = {}
-    rec_convert(graph, converted, sigma, tuple([start]))
-    print_converted(converted, sigma, start, finals)
-    print_simplified(converted, sigma, start, finals)
+    start_tuple = tuple([start])
+    rec_convert(graph, converted, sigma, start_tuple)
+    print_converted(converted, sigma, start_tuple, finals)
+    print_simplified(converted, sigma, start_tuple, finals)
