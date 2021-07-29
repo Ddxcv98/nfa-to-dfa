@@ -146,7 +146,7 @@ def print_dfa(sigma, delta, q0, f):
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument('input', help='File to parse')
+    parser.add_argument('input', help='file to parse')
     parser.add_argument('--nfa', action='store_true', help='flag used when the input is a NFA')
     parser.add_argument('--dfa', action='store_true', help='flag used when the input is a DFA')
     parser.add_argument('--preserve-nfa-sets', action='store_true', help='keep the original sets when converting to a DFA')

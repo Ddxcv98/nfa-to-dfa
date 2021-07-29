@@ -15,7 +15,7 @@ $ python main.py -h
 usage: main.py [-h] [--nfa] [--dfa] [--preserve-nfa-sets] [--preserve-dfa-sets] [--minimize] input
 
 positional arguments:
-  input                File to parse
+  input                file to parse
 
 optional arguments:
   -h, --help           show this help message and exit
