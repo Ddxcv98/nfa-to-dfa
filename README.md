@@ -2,6 +2,12 @@
 
 Conversion of NFA into DFA, minimization of DFA.
 
+## Installing dependencies
+
+```
+pip install tabulate
+```
+
 ## Help command
 
 ```
